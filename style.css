@@ -1,0 +1,73 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0f172a;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+.wrapper { display: flex; gap: 40px; flex-wrap: wrap; justify-content: center; padding: 20px; }
+
+.form-box { background: #fff; padding: 25px; border-radius: 15px; width: 340px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.form-box h2 { margin-top: 0; color: #1e293b; font-size: 20px; text-align: center; }
+
+input { width: 93%; padding: 12px; margin: 8px 0; border: 1px solid #cbd5e1; border-radius: 8px; }
+.upload-area { margin: 15px 0; }
+canvas { background: #f8fafc; border: 2px dashed #94a3b8; border-radius: 8px; cursor: crosshair; }
+
+.btn-clear { background: #ef4444; color: white; border: none; padding: 5px 10px; border-radius: 4px; cursor: pointer; margin-top: 5px; }
+.action-btns { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+.btn-view { background: #3b82f6; color: white; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+.btn-down { background: #10b981; color: white; padding: 12px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+
+/* কার্ড সেকশন */
+.card-display {
+    width: 500px;
+    height: 312px;
+    background: url('images/20260207_210620.jpg') no-repeat center; /* Image Folder Path */
+    background-size: 100% 100%;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.abs { position: absolute; }
+
+.user-photo {
+    top: 98px;
+    left: 20px;
+    width: 103px;
+    height: 123px;
+    border: 0.5px solid #000;
+    object-fit: cover;
+}
+
+/* লেখা নিচে নামানোর জন্য top এবং gap বাড়ানো হয়েছে */
+.info-container {
+    top: 108px;      /* লেখাগুলো ওপর থেকে আরও নিচে নামানো হয়েছে */
+    left: 178px;
+    font-weight: bold;
+    color: #000;
+}
+
+.row { 
+    height: 29px;   /* এক লাইন থেকে অন্য লাইনের গ্যাপ বাড়ানো হয়েছে */
+    display: flex; 
+    align-items: center; 
+    font-size: 14.5px;
+}
+
+.name-bn { font-size: 16px; margin-bottom: 1px; }
+.color-red { color: #d32f2f; }
+.id-no { font-size: 18px; letter-spacing: 1.5px; font-family: monospace; }
+
+.sign-display {
+    bottom: 35px;
+    left: 20px;
+    width: 100px;
+}
+#cardSig { width: 90px; height: 35px; object-fit: contain; }
