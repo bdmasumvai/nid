@@ -1,13 +1,11 @@
 const canvas = document.getElementById('sig-pad');
 const ctx = canvas.getContext('2d');
-let drawing = false;
+let writing = false;
 
-// Image Preview
 function previewImg(e, id) {
     document.getElementById(id).src = URL.createObjectURL(e.target.files[0]);
 }
 
-// Signature Position Logic
 function getPos(e) {
     const rect = canvas.getBoundingClientRect();
     const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
@@ -15,21 +13,21 @@ function getPos(e) {
     return { x, y };
 }
 
-// Draw Logic
-function start(e) { drawing = true; ctx.beginPath(); ctx.moveTo(getPos(e).x, getPos(e).y); if(e.touches) e.preventDefault(); }
-function move(e) { if(!drawing) return; const p = getPos(e); ctx.lineWidth = 2; ctx.lineTo(p.x, p.y); ctx.stroke(); if(e.touches) e.preventDefault(); }
-function stop() { drawing = false; }
+canvas.addEventListener('mousedown', (e) => { writing = true; ctx.beginPath(); ctx.moveTo(getPos(e).x, getPos(e).y); });
+canvas.addEventListener('mousemove', (e) => { 
+    if (!writing) return;
+    const p = getPos(e);
+    ctx.lineTo(p.x, p.y);
+    ctx.lineWidth = 2; ctx.stroke();
+});
+window.addEventListener('mouseup', () => writing = false);
 
-canvas.addEventListener('mousedown', start);
-canvas.addEventListener('mousemove', move);
-window.addEventListener('mouseup', stop);
-canvas.addEventListener('touchstart', start);
-canvas.addEventListener('touchmove', move);
-canvas.addEventListener('touchend', stop);
+// টাচ স্ক্রিন সাপোর্ট
+canvas.addEventListener('touchstart', (e) => { writing = true; ctx.beginPath(); ctx.moveTo(getPos(e).x, getPos(e).y); e.preventDefault(); });
+canvas.addEventListener('touchmove', (e) => { if(writing) { const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); } e.preventDefault(); });
 
 function clearSig() { ctx.clearRect(0, 0, canvas.width, canvas.height); }
 
-// Update Card Content
 function updateCard() {
     document.getElementById('outName').innerText = document.getElementById('inName').value;
     document.getElementById('outEng').innerText = document.getElementById('inEng').value;
@@ -40,12 +38,11 @@ function updateCard() {
     document.getElementById('cardSig').src = canvas.toDataURL();
 }
 
-// Download functionality
 function download() {
-    html2canvas(document.getElementById("nidCard"), { scale: 3, useCORS: true }).then(cvs => {
+    html2canvas(document.getElementById("nidCard"), { scale: 3 }).then(cvs => {
         const link = document.createElement("a");
-        link.download = "NID_Card_Masum_Tech.png";
-        link.href = cvs.toDataURL("image/png");
+        link.download = "NID_Pro_Masum.png";
+        link.href = cvs.toDataURL();
         link.click();
     });
 }
