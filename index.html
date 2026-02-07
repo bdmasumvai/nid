@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart NID Maker | Masum Vai</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="form-box">
+        <h2>NID তথ্য পূরণ করুন</h2>
+        <div class="input-group">
+            <input type="text" id="inName" placeholder="নাম (বাংলায়)">
+            <input type="text" id="inEng" placeholder="Name (English)">
+            <input type="text" id="inFather" placeholder="পিতার নাম">
+            <input type="text" id="inMother" placeholder="মাতার নাম">
+            <input type="text" id="inDOB" placeholder="জন্ম তারিখ (যেমন: 01 Jan 1990)">
+            <input type="text" id="inID" placeholder="ID NO">
+        </div>
+
+        <div class="upload-area">
+            <label>ছবি নির্বাচন করুন:</label>
+            <input type="file" accept="image/*" onchange="previewImg(event, 'cardPhoto')">
+        </div>
+
+        <div class="signature-canvas">
+            <label>নিচে স্বাক্ষর দিন:</label>
+            <canvas id="sig-pad" width="300" height="90"></canvas>
+            <button class="btn-clear" onclick="clearSig()">মুছুন</button>
+        </div>
+
+        <div class="action-btns">
+            <button class="btn-view" onclick="updateCard()">ভিউ কার্ড</button>
+            <button class="btn-down" onclick="download()">ডাউনলোড করুন</button>
+        </div>
+    </div>
+
+    <div class="preview-box">
+        <div id="nidCard" class="card-display">
+            <img id="cardPhoto" class="abs user-photo" src="" alt="">
+            
+            <div class="abs info-container">
+                <div class="row name-bn" id="outName"></div>
+                <div class="row name-en" id="outEng"></div>
+                <div class="row father" id="outFather"></div>
+                <div class="row mother" id="outMother"></div>
+                <div class="row dob color-red" id="outDOB"></div>
+                <div class="row id-no color-red" id="outID"></div>
+            </div>
+
+            <div class="abs sign-display">
+                <img id="cardSig" src="" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
